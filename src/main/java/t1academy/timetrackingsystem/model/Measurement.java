@@ -19,7 +19,7 @@ public class Measurement {
     private Long executionTime;
     @Column(name = "date")
     private LocalDateTime date;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "method_id")
     private Method method;
 

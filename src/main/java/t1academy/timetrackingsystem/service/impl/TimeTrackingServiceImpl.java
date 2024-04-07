@@ -13,6 +13,7 @@ import t1academy.timetrackingsystem.model.Method;
 import t1academy.timetrackingsystem.reposytory.MethodRepository;
 import t1academy.timetrackingsystem.service.TimeTrackingService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -71,8 +72,8 @@ public class TimeTrackingServiceImpl implements TimeTrackingService {
 
     @Override
     public AllTimeTrackingResult getLastMeasurements() {
-        List<Method> methods = methodRepository.findMethods();
-        List<TimeTrackingResult> response = methods.stream().map(methodMapper::toDto).collect(Collectors.toList());
+        List<Method> methods = methodRepository.findAllMethods();
+        List<TimeTrackingResult> response  = methods.stream().map(methodMapper::toDto).collect(Collectors.toList());
         return AllTimeTrackingResult.builder()
                 .timeTrackingResults(response)
                 .build();

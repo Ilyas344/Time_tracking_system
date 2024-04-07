@@ -1,11 +1,8 @@
 package t1academy.timetrackingsystem.mapper;
 
-
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.Named;
-import org.mapstruct.ReportingPolicy;
+import org.mapstruct.*;
 import t1academy.timetrackingsystem.dto.TimeTrackingResult;
+import t1academy.timetrackingsystem.model.Measurement;
 import t1academy.timetrackingsystem.model.Method;
 
 import java.util.List;
@@ -15,24 +12,25 @@ public interface MethodMapper {
     @Mapping(target = "className", source = "className")
     @Mapping(target = "methodName", source = "methodName")
     @Mapping(target = "lastTime", source = "measurements", qualifiedByName = "getLastTime")
-    @Mapping(target = "totalTime", source = "measurements", qualifiedByName = "getTotalTime")
-    @Mapping(target = "averageTime", source = "measurements", qualifiedByName = "getAverageTime")
+    @Mapping(target = "totalTime", source = "measurements",  qualifiedByName = "getTotalTime")
+    @Mapping(target = "averageTime", source = "measurements",  qualifiedByName = "getAverageTime")
     TimeTrackingResult toDto(Method methods);
 
     @Named("getLastTime")
-    default long getLastTime(List<Long> measurements) {
-        return measurements.get(measurements.size() - 1);
+    default Long getLastTime(List<Measurement> measurements) {
+        return measurements.get(measurements.size() - 1).getExecutionTime();
     }
 
     @Named("getTotalTime")
-    default long getTotalTime(List<Long> measurements) {
-        return measurements.stream().reduce(0L, Long::sum);
+    default Long getTotalTime(List<Measurement> measurements) {
+        return measurements.stream().mapToLong(Measurement::getExecutionTime).sum();
     }
 
     @Named("getAverageTime")
-    default double getAverageTime(List<Long> measurements) {
-        return measurements.stream().mapToDouble(Long::doubleValue).average().orElse(0);
+    default Double getAverageTime(List<Measurement> measurements) {
+        return measurements.stream().mapToDouble(Measurement::getExecutionTime).average().orElse(0.0);
     }
+
 
 
 }

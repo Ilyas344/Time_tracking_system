@@ -12,7 +12,8 @@ import java.util.Optional;
 @Repository
 public interface MethodRepository extends JpaRepository<Method, Long> {
 
-    List<Method> findMethods();
+    @Query("SELECT m FROM Method m")
+    List<Method> findAllMethods();
 
     Optional<Method> findByClassNameAndMethodName(String className, String methodName);
 
