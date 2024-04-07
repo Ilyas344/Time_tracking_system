@@ -3,13 +3,13 @@ package t1academy.timetrackingsystem.dto;
 import lombok.Builder;
 import lombok.Value;
 
+import java.util.List;
+
 
 @Value
 @Builder
 public class AllMethodResult {
 
-    String className;
-    String methodName;
-    String group;
-    
+    List<String> methods;
+
 }

@@ -1,4 +1,4 @@
-package t1academy.timetrackingsystem.annotation;
+package t1academy.timetrackingsystem.aspect.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

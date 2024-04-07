@@ -1,2 +1,8 @@
-package t1academy.timetrackingsystem.service;public class TestService {
+package t1academy.timetrackingsystem.service;
+
+public interface TestService {
+    void testTime();
+
+    void testAsyncTime();
 }
+
