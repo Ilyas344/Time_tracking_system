@@ -35,7 +35,8 @@ public class TimeTrackingServiceImpl implements TimeTrackingService {
         saveTimeTracking(method);
     }
 
-    private Method findOrCreateMethod(String className, String methodName) {
+    @Override
+    public Method findOrCreateMethod(String className, String methodName) {
         Optional<Method> existingMethod = getMethod(className, methodName);
         if (existingMethod.isPresent()) {
             return existingMethod.get();

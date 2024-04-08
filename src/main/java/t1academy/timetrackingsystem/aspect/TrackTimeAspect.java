@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 import t1academy.timetrackingsystem.service.TimeTrackingService;
 
@@ -16,8 +17,11 @@ public class TrackTimeAspect {
 
     private final TimeTrackingService timeTrackingService;
 
+    @Pointcut("@annotation(t1academy.timetrackingsystem.aspect.annotation.TrackTime)")
+    public void trackPointcut() {
+    }
 
-    @Around("@annotation(t1academy.timetrackingsystem.aspect.annotation.TrackTime)")
+    @Around("trackPointcut()")
     public Object trackTimeMethod(ProceedingJoinPoint joinPoint) throws Throwable {
         long startTime = System.currentTimeMillis();
 
