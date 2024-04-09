@@ -19,7 +19,6 @@ import t1academy.timetrackingsystem.exception.ResponseException;
 
 @Tag(name = "TimeTracking", description = "TimeTracking API сервис для хранения и получения времени работы метода")
 @RequestMapping("/api/v1")
-
 public interface TimeTrackingApi {
 
     @Operation(summary = "Получить все измерения всех методов")

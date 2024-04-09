@@ -26,15 +26,11 @@ public class Method {
     private String className;
     @Column(name = "method_name")
     private String methodName;
+
+    @OneToMany(mappedBy = "method", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @Fetch(FetchMode.SUBSELECT)
-    @OneToMany(mappedBy = "method", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Measurement> measurements;
 
-    public Method(String className, String methodName, List<Measurement> measurements) {
-        this.className = className;
-        this.methodName = methodName;
-        this.measurements = measurements;
-    }
 
     public Method(String className, String methodName) {
         this.className = className;
