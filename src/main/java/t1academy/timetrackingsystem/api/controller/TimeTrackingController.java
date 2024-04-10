@@ -8,7 +8,6 @@ import t1academy.timetrackingsystem.api.TimeTrackingApi;
 import t1academy.timetrackingsystem.dto.AllMethodResult;
 import t1academy.timetrackingsystem.dto.AllTimeTrackingResult;
 import t1academy.timetrackingsystem.dto.TimeTrackingResult;
-import t1academy.timetrackingsystem.service.TestService;
 import t1academy.timetrackingsystem.service.TimeTrackingService;
 
 @Slf4j
@@ -16,7 +15,6 @@ import t1academy.timetrackingsystem.service.TimeTrackingService;
 @RequiredArgsConstructor
 public class TimeTrackingController implements TimeTrackingApi {
     private final TimeTrackingService timeTracking;
-    private final TestService testService;
 
 
     @Override
@@ -34,10 +32,4 @@ public class TimeTrackingController implements TimeTrackingApi {
         return ResponseEntity.ok(timeTracking.getAllMethods());
     }
 
-    @Override
-    public ResponseEntity<Void> test() {
-        testService.testTime();
-        testService.testAsyncTime();
-        return ResponseEntity.ok().build();
-    }
 }

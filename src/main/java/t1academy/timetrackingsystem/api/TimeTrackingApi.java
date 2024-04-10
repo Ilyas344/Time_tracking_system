@@ -97,7 +97,5 @@ public interface TimeTrackingApi {
     @GetMapping("/time/methods")
     ResponseEntity<AllMethodResult> getAllMethods();
 
-    @Operation(summary = "Запуск методов для проверки")
-    @GetMapping("/time/methods/test")
-    ResponseEntity<Void> test();
+
 }
